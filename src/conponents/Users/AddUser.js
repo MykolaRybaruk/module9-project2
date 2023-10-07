@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import styles from "./AddUser.module.css";
+import ErrorModal from "../UI/ErrorModal";
 
 export default function AddUser(props) {
   const [enteredUsername, setEnteredUsername] = useState("");
@@ -18,7 +19,7 @@ export default function AddUser(props) {
       console.log("lentgth  === 1");
       return;
     }
-    console.log(enteredUsername, enteredAge);
+    props.onAddUser(enteredUsername, enteredAge);
     setEnteredUsername("");
     setEnteredAge("");
   };
@@ -32,26 +33,29 @@ export default function AddUser(props) {
   };
 
   return (
-    <Card className={styles.input}>
-      <form onSubmit={addUserHandler}>
-        <label htmlFor="username">Username</label>
-        <input
-          value={enteredUsername}
-          id="username"
-          type="text"
-          onChange={usernameChangeHandler}
-        />
+    <div>
+      <ErrorModal title={"An error occured"} messgae={"The message"} />
+      <Card className={styles.input}>
+        <form onSubmit={addUserHandler}>
+          <label htmlFor="username">Username</label>
+          <input
+            value={enteredUsername}
+            id="username"
+            type="text"
+            onChange={usernameChangeHandler}
+          />
 
-        <label htmlFor="age">Age (Years)</label>
-        <input
-          value={enteredAge}
-          id="age"
-          type="number"
-          onChange={ageChangeHandler}
-        />
+          <label htmlFor="age">Age (Years)</label>
+          <input
+            value={enteredAge}
+            id="age"
+            type="number"
+            onChange={ageChangeHandler}
+          />
 
-        <Button type={"submit"}>Add User</Button>
-      </form>
-    </Card>
+          <Button type={"submit"}>Add User</Button>
+        </form>
+      </Card>
+    </div>
   );
 }

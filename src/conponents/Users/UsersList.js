@@ -7,8 +7,8 @@ export default function UserList(props) {
     <Card className={styles.users}>
       <ul>
         {props.users.map((user) => (
-          <li>
-            {user.name} ({user.age} uears old)
+          <li key={user.id}>
+            {user.name} ({user.age} ears old)
           </li>
         ))}
       </ul>
