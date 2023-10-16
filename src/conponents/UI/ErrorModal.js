@@ -4,9 +4,10 @@ import Button from "./Button";
 import styles from "./ErrorModal.module.css";
 
 export default function ErrorModal(props) {
+  console.log(props.message);
   return (
     <div>
-      <div className={styles.backdrop} />
+      <div className={styles.backdrop} onClick={props.onConfirm} />
       <Card className={styles.modal}>
         <header className={styles.header}>
           <h2>{props.title}</h2>
@@ -15,7 +16,7 @@ export default function ErrorModal(props) {
           <p>{props.message}</p>
         </div>
         <footer className={styles.actions}>
-          <Button>Okay</Button>
+          <Button onClick={props.onConfirm}>Okay</Button>
         </footer>
       </Card>
     </div>
